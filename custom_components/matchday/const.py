@@ -12,7 +12,6 @@ CONF_SEASON = "season"
 
 # API
 API_BASE_URL = "https://v3.football.api-sports.io"
-API_HOST = "v3.football.api-sports.io"
 
 # Well-known league IDs
 LEAGUE_1_BUNDESLIGA = 78

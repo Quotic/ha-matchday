@@ -7,7 +7,7 @@ from typing import Any
 
 import aiohttp
 
-from .const import API_BASE_URL, API_HOST
+from .const import API_BASE_URL
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -31,8 +31,7 @@ class MatchdayApiClient:
         self._api_key = api_key
         self._session = session
         self._headers = {
-            "x-rapidapi-key": api_key,
-            "x-rapidapi-host": API_HOST,
+            "x-apisports-key": api_key,
         }
 
     async def _request(self, endpoint: str, params: dict[str, Any] | None = None) -> dict:
