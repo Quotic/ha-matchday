@@ -1,0 +1,50 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Matchday – API-Einrichtung",
+        "description": "Gib deinen [API-Football](https://www.api-football.com/)-API-Schlüssel ein und wähle Liga und Saison.",
+        "data": {
+          "api_key": "API-Schlüssel",
+          "league_id": "Liga",
+          "season": "Saison (Startjahr)"
+        },
+        "data_description": {
+          "api_key": "Kostenlosen Schlüssel unter dashboard.api-football.com beantragen",
+          "season": "z.B. 2025 für die Saison 2025/2026"
+        }
+      },
+      "team": {
+        "title": "Mannschaft auswählen",
+        "description": "Wähle die Mannschaft, die du verfolgen möchtest.",
+        "data": {
+          "team_id": "Mannschaft"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Ungültiger API-Schlüssel – bitte prüfen und erneut versuchen.",
+      "cannot_connect": "Keine Verbindung zu API-Football. Internetverbindung prüfen.",
+      "no_teams": "Keine Mannschaften für diese Liga/Saison gefunden."
+    },
+    "abort": {
+      "already_configured": "Diese Mannschaft / Liga / Saison ist bereits konfiguriert."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_match": {
+        "name": "Nächstes Spiel"
+      },
+      "last_match": {
+        "name": "Letztes Spiel"
+      },
+      "standing": {
+        "name": "Tabellenplatz"
+      },
+      "live_score": {
+        "name": "Live-Ergebnis"
+      }
+    }
+  }
+}

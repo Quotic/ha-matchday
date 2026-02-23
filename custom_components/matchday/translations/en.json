@@ -1,0 +1,50 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Matchday – API Setup",
+        "description": "Enter your [API-Football](https://www.api-football.com/) API key and choose the league and season you want to follow.",
+        "data": {
+          "api_key": "API Key",
+          "league_id": "League",
+          "season": "Season (starting year)"
+        },
+        "data_description": {
+          "api_key": "Get your free key at dashboard.api-football.com",
+          "season": "e.g. 2025 for the 2025/2026 season"
+        }
+      },
+      "team": {
+        "title": "Select Your Team",
+        "description": "Pick the team you want to follow.",
+        "data": {
+          "team_id": "Team"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Invalid API key – please check and try again.",
+      "cannot_connect": "Could not connect to API-Football. Check your internet connection.",
+      "no_teams": "No teams found for this league and season combination."
+    },
+    "abort": {
+      "already_configured": "This team / league / season is already configured."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_match": {
+        "name": "Next Match"
+      },
+      "last_match": {
+        "name": "Last Match"
+      },
+      "standing": {
+        "name": "League Standing"
+      },
+      "live_score": {
+        "name": "Live Score"
+      }
+    }
+  }
+}
