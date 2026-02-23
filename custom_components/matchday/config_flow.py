@@ -87,7 +87,10 @@ class MatchdayConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             except MatchdayAuthError:
                 errors["base"] = "invalid_auth"
             except MatchdayApiError as err:
-                _LOGGER.error("API error during setup: %s", err)
+                _LOGGER.error("Cannot connect to API-Football: %s", err, exc_info=True)
+                errors["base"] = "cannot_connect"
+            except Exception as err:  # noqa: BLE001
+                _LOGGER.exception("Unexpected error during Matchday setup: %s", err)
                 errors["base"] = "cannot_connect"
 
         return self.async_show_form(
