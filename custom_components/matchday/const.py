@@ -9,9 +9,23 @@ CONF_LEAGUE_ID = "league_id"
 CONF_TEAM_ID = "team_id"
 CONF_TEAM_NAME = "team_name"
 CONF_SEASON = "season"
+CONF_DATA_SOURCE = "data_source"
+
+# Data source identifiers
+DATA_SOURCE_APIFOOTBALL = "apifootball"
+DATA_SOURCE_OPENLIGADB = "openligadb"
 
 # API
 API_BASE_URL = "https://v3.football.api-sports.io"
+
+# OpenLigaDB
+OPENLIGADB_BASE_URL = "https://api.openligadb.de"
+# Maps well-known league IDs to OpenLigaDB shortcut strings
+OPENLIGADB_LEAGUE_SHORTCUTS = {
+    78: "bl1",   # 1. Bundesliga
+    79: "bl2",   # 2. Bundesliga
+    81: "dfb",   # DFB Pokal
+}
 
 # Well-known league IDs
 LEAGUE_1_BUNDESLIGA = 78

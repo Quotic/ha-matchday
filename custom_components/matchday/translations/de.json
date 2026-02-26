@@ -2,15 +2,17 @@
   "config": {
     "step": {
       "user": {
-        "title": "Matchday – API-Einrichtung",
-        "description": "Gib deinen [API-Football](https://www.api-football.com/)-API-Schlüssel ein und wähle Liga und Saison.",
+        "title": "Matchday – Einrichtung",
+        "description": "Wähle eine Datenquelle sowie Liga und Saison. OpenLigaDB ist kostenlos und benötigt keinen API-Schlüssel.",
         "data": {
-          "api_key": "API-Schlüssel",
+          "data_source": "Datenquelle",
+          "api_key": "API-Schlüssel (nur API-Football)",
           "league_id": "Liga",
           "season": "Saison (Startjahr)"
         },
         "data_description": {
-          "api_key": "Kostenlosen Schlüssel unter dashboard.api-football.com beantragen",
+          "data_source": "OpenLigaDB ist kostenlos und deckt deutsche Ligen ab. API-Football benötigt einen kostenlosen Schlüssel von dashboard.api-football.com.",
+          "api_key": "Nur erforderlich bei API-Football. Bei OpenLigaDB leer lassen.",
           "season": "z.B. 2025 für die Saison 2025/2026"
         }
       },
@@ -24,7 +26,7 @@
     },
     "error": {
       "invalid_auth": "Ungültiger API-Schlüssel – bitte prüfen und erneut versuchen.",
-      "cannot_connect": "Keine Verbindung zu API-Football. Internetverbindung prüfen.",
+      "cannot_connect": "Keine Verbindung zur Datenquelle. Internetverbindung prüfen.",
       "no_teams": "Keine Mannschaften für diese Liga/Saison gefunden."
     },
     "abort": {

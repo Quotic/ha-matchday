@@ -11,6 +11,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .api import MatchdayApiClient, MatchdayApiError, MatchdayAuthError, MatchdayRateLimitError
+from .api_openligadb import OpenLigaDbClient, OpenLigaDbError
 from .const import (
     CONF_LEAGUE_ID,
     CONF_SEASON,
@@ -32,7 +33,7 @@ class MatchdayCoordinator(DataUpdateCoordinator):
         self,
         hass: HomeAssistant,
         config_entry: ConfigEntry,
-        api_client: MatchdayApiClient,
+        api_client: MatchdayApiClient | OpenLigaDbClient,
     ) -> None:
         super().__init__(
             hass,
@@ -71,7 +72,7 @@ class MatchdayCoordinator(DataUpdateCoordinator):
         except MatchdayRateLimitError as err:
             _LOGGER.warning("API-Football daily quota exceeded; will retry later: %s", err)
             raise UpdateFailed(f"Daily quota exceeded: {err}") from err
-        except MatchdayApiError as err:
+        except (MatchdayApiError, OpenLigaDbError) as err:
             raise UpdateFailed(f"API error: {err}") from err
 
         processed = self._process_fixtures(fixtures)
