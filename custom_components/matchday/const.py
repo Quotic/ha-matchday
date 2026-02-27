@@ -4,19 +4,10 @@ DOMAIN = "matchday"
 PLATFORMS = ["sensor"]
 
 # Config entry keys
-CONF_API_KEY = "api_key"
 CONF_LEAGUE_ID = "league_id"
 CONF_TEAM_ID = "team_id"
 CONF_TEAM_NAME = "team_name"
 CONF_SEASON = "season"
-CONF_DATA_SOURCE = "data_source"
-
-# Data source identifiers
-DATA_SOURCE_APIFOOTBALL = "apifootball"
-DATA_SOURCE_OPENLIGADB = "openligadb"
-
-# API
-API_BASE_URL = "https://v3.football.api-sports.io"
 
 # OpenLigaDB
 OPENLIGADB_BASE_URL = "https://api.openligadb.de"
@@ -43,7 +34,7 @@ SCAN_INTERVAL_DEFAULT = 30   # Idle days
 SCAN_INTERVAL_MATCHDAY = 5   # Match day, pre/post match
 SCAN_INTERVAL_LIVE = 1       # During an active match
 
-# Live match status codes from API-Football
+# Match status codes (OpenLigaDB maps to these)
 LIVE_STATUS_CODES = {"1H", "HT", "2H", "ET", "BT", "P", "SUSP", "INT", "LIVE"}
 FINISHED_STATUS_CODES = {"FT", "AET", "PEN"}
 
@@ -52,6 +43,12 @@ SENSOR_NEXT_MATCH = "next_match"
 SENSOR_LAST_MATCH = "last_match"
 SENSOR_STANDING = "standing"
 SENSOR_LIVE_SCORE = "live_score"
+SENSOR_NEXT_OPPONENT = "next_opponent"
+SENSOR_LAST_OPPONENT = "last_opponent"
+SENSOR_GOALS_FOR = "goals_for"
+SENSOR_GOALS_AGAINST = "goals_against"
+SENSOR_LAST_RESULT = "last_result"
+SENSOR_NEXT_GAME_VENUE = "next_game_venue"
 
 # Attribution
-ATTRIBUTION = "Data provided by API-Football (api-football.com)"
+ATTRIBUTION = "Data provided by OpenLigaDB (openligadb.de)"

@@ -7,10 +7,8 @@ from datetime import datetime, timedelta, timezone
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .api import MatchdayApiClient, MatchdayApiError, MatchdayAuthError, MatchdayRateLimitError
 from .api_openligadb import OpenLigaDbClient, OpenLigaDbError
 from .const import (
     CONF_LEAGUE_ID,
@@ -33,7 +31,7 @@ class MatchdayCoordinator(DataUpdateCoordinator):
         self,
         hass: HomeAssistant,
         config_entry: ConfigEntry,
-        api_client: MatchdayApiClient | OpenLigaDbClient,
+        api_client: OpenLigaDbClient,
     ) -> None:
         super().__init__(
             hass,
@@ -64,16 +62,12 @@ class MatchdayCoordinator(DataUpdateCoordinator):
     # ------------------------------------------------------------------
 
     async def _async_update_data(self) -> dict:
-        """Fetch all data from API-Football and return a processed dict."""
+        """Fetch all data from OpenLigaDB and return a processed dict."""
         try:
-            fixtures, standings = await self._fetch_fixtures_and_standings()
-        except MatchdayAuthError as err:
-            raise ConfigEntryAuthFailed from err
-        except MatchdayRateLimitError as err:
-            _LOGGER.warning("API-Football daily quota exceeded; will retry later: %s", err)
-            raise UpdateFailed(f"Daily quota exceeded: {err}") from err
-        except (MatchdayApiError, OpenLigaDbError) as err:
-            raise UpdateFailed(f"API error: {err}") from err
+            fixtures = await self._api.get_fixtures(self._league_id, self._season, self._team_id)
+            standings = await self._api.get_standings(self._league_id, self._season)
+        except OpenLigaDbError as err:
+            raise UpdateFailed(f"OpenLigaDB error: {err}") from err
 
         processed = self._process_fixtures(fixtures)
         processed["standing"] = self._extract_standing(standings)
@@ -84,11 +78,6 @@ class MatchdayCoordinator(DataUpdateCoordinator):
     # ------------------------------------------------------------------
     # Private helpers
     # ------------------------------------------------------------------
-
-    async def _fetch_fixtures_and_standings(self):
-        fixtures = await self._api.get_fixtures(self._league_id, self._season, self._team_id)
-        standings = await self._api.get_standings(self._league_id, self._season)
-        return fixtures, standings
 
     def _process_fixtures(self, fixtures: list[dict]) -> dict:
         now = datetime.now(tz=timezone.utc)
@@ -108,8 +97,7 @@ class MatchdayCoordinator(DataUpdateCoordinator):
                 continue
 
             try:
-                match_dt = datetime.fromisoformat(raw_date)
-                # Ensure timezone-aware
+                match_dt = datetime.fromisoformat(raw_date.replace("Z", "+00:00"))
                 if match_dt.tzinfo is None:
                     match_dt = match_dt.replace(tzinfo=timezone.utc)
             except ValueError:
@@ -158,7 +146,7 @@ class MatchdayCoordinator(DataUpdateCoordinator):
         if not raw_date:
             return False
         try:
-            match_dt = datetime.fromisoformat(raw_date)
+            match_dt = datetime.fromisoformat(raw_date.replace("Z", "+00:00"))
             if match_dt.tzinfo is None:
                 match_dt = match_dt.replace(tzinfo=timezone.utc)
             return match_dt.date() == datetime.now(tz=timezone.utc).date()

@@ -3,16 +3,12 @@
     "step": {
       "user": {
         "title": "Matchday – Setup",
-        "description": "Choose a data source and select the league and season you want to follow. OpenLigaDB is free and requires no API key.",
+        "description": "Choose the German league and season you want to follow. Data is provided for free by [OpenLigaDB](https://openligadb.de).",
         "data": {
-          "data_source": "Data Source",
-          "api_key": "API Key (API-Football only)",
           "league_id": "League",
           "season": "Season (starting year)"
         },
         "data_description": {
-          "data_source": "OpenLigaDB is free and covers German leagues. API-Football requires a free key from dashboard.api-football.com.",
-          "api_key": "Only required when using API-Football. Leave empty for OpenLigaDB.",
           "season": "e.g. 2025 for the 2025/2026 season"
         }
       },
@@ -25,8 +21,7 @@
       }
     },
     "error": {
-      "invalid_auth": "Invalid API key – please check and try again.",
-      "cannot_connect": "Could not connect to the data source. Check your internet connection.",
+      "cannot_connect": "Could not connect to OpenLigaDB. Check your internet connection.",
       "no_teams": "No teams found for this league and season combination."
     },
     "abort": {
@@ -46,6 +41,24 @@
       },
       "live_score": {
         "name": "Live Score"
+      },
+      "next_opponent": {
+        "name": "Next Opponent"
+      },
+      "last_opponent": {
+        "name": "Last Opponent"
+      },
+      "goals_for": {
+        "name": "Goals Scored"
+      },
+      "goals_against": {
+        "name": "Goals Conceded"
+      },
+      "last_result": {
+        "name": "Last Result"
+      },
+      "next_game_venue": {
+        "name": "Next Game Home/Away"
       }
     }
   }
