@@ -3,16 +3,12 @@
     "step": {
       "user": {
         "title": "Matchday – Einrichtung",
-        "description": "Wähle eine Datenquelle sowie Liga und Saison. OpenLigaDB ist kostenlos und benötigt keinen API-Schlüssel.",
+        "description": "Wähle die deutsche Liga und Saison, die du verfolgen möchtest. Daten werden kostenlos von [OpenLigaDB](https://openligadb.de) bereitgestellt.",
         "data": {
-          "data_source": "Datenquelle",
-          "api_key": "API-Schlüssel (nur API-Football)",
           "league_id": "Liga",
           "season": "Saison (Startjahr)"
         },
         "data_description": {
-          "data_source": "OpenLigaDB ist kostenlos und deckt deutsche Ligen ab. API-Football benötigt einen kostenlosen Schlüssel von dashboard.api-football.com.",
-          "api_key": "Nur erforderlich bei API-Football. Bei OpenLigaDB leer lassen.",
           "season": "z.B. 2025 für die Saison 2025/2026"
         }
       },
@@ -25,8 +21,7 @@
       }
     },
     "error": {
-      "invalid_auth": "Ungültiger API-Schlüssel – bitte prüfen und erneut versuchen.",
-      "cannot_connect": "Keine Verbindung zur Datenquelle. Internetverbindung prüfen.",
+      "cannot_connect": "Keine Verbindung zu OpenLigaDB. Internetverbindung prüfen.",
       "no_teams": "Keine Mannschaften für diese Liga/Saison gefunden."
     },
     "abort": {
@@ -46,6 +41,24 @@
       },
       "live_score": {
         "name": "Live-Ergebnis"
+      },
+      "next_opponent": {
+        "name": "Nächster Gegner"
+      },
+      "last_opponent": {
+        "name": "Letzter Gegner"
+      },
+      "goals_for": {
+        "name": "Erzielte Tore"
+      },
+      "goals_against": {
+        "name": "Gegentore"
+      },
+      "last_result": {
+        "name": "Letztes Ergebnis"
+      },
+      "next_game_venue": {
+        "name": "Nächstes Spiel Heim/Auswärts"
       }
     }
   }
