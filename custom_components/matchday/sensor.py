@@ -371,6 +371,8 @@ class GoalsAgainstSensor(MatchdaySensorBase):
 class LastResultSensor(MatchdaySensorBase):
     """Shows whether the team won, drew, or lost their last match."""
 
+    _attr_device_class = SensorDeviceClass.ENUM
+    _attr_options = ["Win", "Draw", "Loss"]
     _attr_translation_key = "last_result"
 
     def __init__(self, coordinator: MatchdayCoordinator, config_entry: ConfigEntry) -> None:
@@ -422,6 +424,8 @@ class LastResultSensor(MatchdaySensorBase):
 class NextGameVenueSensor(MatchdaySensorBase):
     """Shows whether the next match is a home or away game."""
 
+    _attr_device_class = SensorDeviceClass.ENUM
+    _attr_options = ["Home", "Away"]
     _attr_translation_key = "next_game_venue"
 
     def __init__(self, coordinator: MatchdayCoordinator, config_entry: ConfigEntry) -> None:
